@@ -14,6 +14,7 @@ def word_paradigm(word):
 def word_paradigm_many(wordlist):
     """ Find alternative form for a list words """
     r = requests.post("https://api.nb.no/ngram/paradigms", json = {'words': wordlist})
+
     return r.json()
 
 
