@@ -4,19 +4,20 @@ from PIL import Image
 
 
 
-@st.cache(suppress_st_warning=True, show_spinner = False)
+@st.cache_data(show_spinner = False)
 def get_corpus(freetext=None, title=None, from_year=1900, to_year=2020):
     c = dh.Corpus(freetext=freetext, title=title,from_year=from_year, to_year=to_year)
     return c.corpus
 
-@st.cache(suppress_st_warning=True, show_spinner = False)
+@st.cache_data(show_spinner = False)
 def get_dispersion(urn = None, wordbag = None, window=1500, pr=100):
     d = dh.Dispersion(urn=urn, wordbag=wordbag, window=window, pr=pr)
     return d
 
 
 
-#st.set_page_config(layout="wide")
+
+st.set_page_config(page_title="Narrative buer", page_icon=None, layout="wide", initial_sidebar_state="auto", menu_items=None)
 
 image = Image.open("DHlab_logo_web_en_black.png")
 st.image(image)
@@ -25,7 +26,7 @@ st.markdown("""Les mer på [DHLAB-siden](https://nb.no/dh-lab)""")
 
 st.title('Ord i tekst - Narrative buer')
 
-window = st.sidebar.number_input("Størrelse på tekst det telles i (vindu)", min_value = 300, value=500)
+window = st.sidebar.number_input("Størrelse på tekst det telles i (vindu)", min_value = 300, value=2500)
 pr = st. sidebar.number_input("Antall steg mellom hvert vindu", min_value = 100, value=100)
 
 stikkord = st.text_input('Angi noen stikkord for å forme et utvalg tekster, og velg fra listen under')
